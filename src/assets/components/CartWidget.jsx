@@ -4,7 +4,7 @@ import React from 'react';
 const CartWidget = ({ itemCount }) => {
   return (
     <div className="cart-widget">
-      <i className="fas fa-shopping-cart"></i>
+      <i class="fa-solid fa-basket-shopping"></i>
       {itemCount > 0 && <span className="item-count">{itemCount}</span>}
     </div>
   );
