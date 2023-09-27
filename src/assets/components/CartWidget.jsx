@@ -1,13 +1,18 @@
-
 import React from 'react';
 
-const CartWidget = ({ itemCount }) => {
+function CartWidget() {
+  const itemCount = 5;
+
+  const numberStyle = {
+    color: 'cyan',
+  };
+
   return (
     <div className="cart-widget">
-      <i class="fa-solid fa-basket-shopping"></i>
-      {itemCount > 0 && <span className="item-count">{itemCount}</span>}
+      <i className="fa fa-shopping-cart"></i>
+      <span className="badge badge-pill" style={numberStyle}>{itemCount}</span>
     </div>
   );
-};
+}
 
 export default CartWidget;
