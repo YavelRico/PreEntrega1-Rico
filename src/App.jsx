@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './assets/components/NavBar';
-import WelcomeToCart from './assets/components/ItemListContainer';
-import Detalles from './assets/components/ItemListDetails';
+import Navbar from './components/NavBar';
+import WelcomeToCart from './components/ItemListContainer';
+import Detalles from './components/ItemListDetails';
 
 const App = () => {
   return (
@@ -10,7 +10,8 @@ const App = () => {
       <div>
         <Navbar />
         <Routes>
-          <Route path="/product" element={<WelcomeToCart />} />
+          <Route path="/" element={<WelcomeToCart />} />
+          <Route path="/product/:category" element={<WelcomeToCart />} />
           <Route path="/detalles/:productId" element={<Detalles />} />
         </Routes>
       </div>
@@ -18,4 +19,4 @@ const App = () => {
   );
 }
 
-export default App;
+export default App;
