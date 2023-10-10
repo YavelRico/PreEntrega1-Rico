@@ -17,10 +17,11 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<WelcomeToCart />} />
-          <Route path="/product/:category" element={<WelcomeToCart />} />
+          <Route path="/category/:categories" element={<WelcomeToCart />} />
           <Route path="/detalles/:productId" element={<Detalles />} />
           <Route path="/error" element={<ErrorComponent />} />
         </Routes>
+
       </div>
     </Router>
   );
