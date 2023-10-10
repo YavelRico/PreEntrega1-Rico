@@ -26,7 +26,6 @@ a:hover {
 
 body {
   margin: 0;
-
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
@@ -77,6 +76,10 @@ button:focus-visible {
   background-color: #00000000 !important;
 }
 
+.dropdown-menu.show {
+  background-color: blueviolet !important;
+}
+
 .nav-link{
   color: #43f7fc;
   font-size: 18px;
@@ -117,6 +120,10 @@ body {
 .card{
   background-color: rgb(66, 152, 223);
   color: #ffffff;
+  width:30%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px;
 }
 
 a{
@@ -127,12 +134,19 @@ a{
 }
 
 .productos {
-  display: grid;
+  display: flex;
   grid-template-columns: 33.3% 33.3% 33.3%;
   gap: 40px;
   width: 90%;
   margin: 5% 0px;
 }
+
+ol, ul {
+  padding-left: 2rem;
+  display: flex;
+}
+
+
 
 .prod img {
   width: 200px;

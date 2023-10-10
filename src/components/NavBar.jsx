@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import CartWidget from './CartWidget';
 
+const categories = ["Tradicional", "Digital", "Modelaje", "Servicios"];
+
 function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -21,14 +23,19 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-              <Link className="nav-link" to="#">Inicio</Link>
+              <Link className="nav-link" to="/">Inicio</Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/product">Productos</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/">Servicios</Link>
-            </li>
+            <li className="nav-item dropdown">
+						<a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+							aria-expanded="false">Productos</a>
+						<ul className="dropdown-menu">
+            {categories.map((category) => (
+              <li className="dropdown-item-item" key={category}>
+                <Link className="nav-link" to={`/category/${category}`}>{category}</Link>
+              </li>
+            ))}
+						</ul>
+					</li>
             <li className="nav-item">
               <Link className="nav-link" to="/">Contacto</Link>
             </li>

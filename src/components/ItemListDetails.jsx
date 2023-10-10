@@ -1,28 +1,5 @@
 import React, { useState } from 'react';
 
-const products = [
-  {
-    id: 'Tradicional',
-    name: 'Dibujo Tradicional',
-    description: 'USD$ 15',
-  },
-  {
-    id: 'Digital',
-    name: 'Dibujo Digital',
-    description: 'USD$ 20',
-  },
-  {
-    id: 'Modelaje',
-    name: 'Modelaje 3D',
-    description: 'USD$120',
-  },
-  {
-    id: 'Serv',
-    name: 'Contratar por hora',
-    description: 'USD$ 20',
-  },
-];
-
 function Detalles({ product }) {
   const [count, setCount] = useState(0);
 
@@ -37,7 +14,7 @@ function Detalles({ product }) {
   };
 
   return (
-    <div className="card">
+    <li key={product.id}>
       <img src={product.image} alt={product.name} className="card-img-top" />
       <div className="card-body">
         <h5 className="card-title">{product.name}</h5>
@@ -50,7 +27,7 @@ function Detalles({ product }) {
           Restar
         </button>
       </div>
-    </div>
+    </li>
   );
 }
 

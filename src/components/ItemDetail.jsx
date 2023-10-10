@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
-import ItemCount from './ItemCount';
+import { Link } from 'react-router-dom';
 
-function ItemDetail({ product }) {
+function Detalles({ product }) {
   const [count, setCount] = useState(0);
 
-  const handleAddToCart = (quantity) => {
-    console.log(`Agregado al carrito: ${quantity} ${product.name}`);
+  const handleIncrement = () => {
+    setCount(count + 1);
+  };
+
+  const handleDecrement = () => {
+    if (count > 0) {
+      setCount(count - 1);
+    }
   };
 
   return (
@@ -14,10 +20,16 @@ function ItemDetail({ product }) {
       <div className="card-body">
         <h5 className="card-title">{product.name}</h5>
         <p className="card-text">{product.description}</p>
-        <ItemCount stock={5} initial={1} onAdd={handleAddToCart} />
+        <p>Cantidad: {count}</p>
+        <button className="btn btn-primary" onClick={handleIncrement}>
+          Sumar
+        </button>
+        <button className="btn btn-danger" onClick={handleDecrement}>
+          Restar
+        </button>
       </div>
     </div>
   );
 }
 
-export default ItemDetail;
+export default Detalles;
