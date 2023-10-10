@@ -1,17 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-function ItemList({ productos }) {
+function ItemList({ products }) {
   return (
     <div>
-      <h1>YavelStore</h1>
-      <div className="row">
-        {productos.map((product) => (
-          <div className="col-md-3" key={product.id}>
-            <Detalles product={product} />
-            <Link to={`/detalles/${product.id}`}>Ver Detalles</Link>
-          </div>
+      <h2>Productos</h2>
+      <ul>
+        {products.map((product) => (
+          <li key={product.id}>
+            <Link to={`/detalles/${product.id}`}>{product.name}</Link>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }

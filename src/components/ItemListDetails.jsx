@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Tradicional from './assets/tradicional.jpg'
 
 const products = [
   {

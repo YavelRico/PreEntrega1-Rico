@@ -1,43 +1,61 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import products from './asyncMock';
-
-function ItemList(props) {
-  return (
-    <div>
-      <h1>YavelStore</h1>
-      <div className="row">
-        {props.productos.map((product) => (
-          <div className="col-md-3" key={product.id}>
-            <Detalles product={product} />
-            <Link to={`/detalles/${product.id}`}>Ver Detalles</Link>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
+import { useParams, useNavigate } from 'react-router-dom';
+import { getProductsByCategory } from './asyncMock';
 
 function ItemListContainer() {
-  const [productos, setProductos] = useState([]);
-  const { category } = useParams();
+  const { category: initialCategory } = useParams();
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+  const [category, setCategory] = useState(initialCategory || '');
 
   useEffect(() => {
-    async function fetchProductsByCategory() {
+    async function fetchProducts() {
       try {
-        const filteredProducts = await getProductsByCategory(category);
-        setProductos(filteredProducts);
+        const response = await getProductsByCategory(category); 
+        setProducts(response);
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching products by category:', error);
+        navigate('/error');
       }
     }
 
-    fetchProductsByCategory();
-  }, [category]);
+    fetchProducts();
+  }, [category, navigate]);
+
+  const handleCategoryChange = (e) => {
+    const selectedCategory = e.target.value;
+    navigate(`/product/${selectedCategory}`);
+    setCategory(selectedCategory);
+  };
+
+  if (loading) {
+    return <p>Cargando productos...</p>;
+  }
 
   return (
     <div>
-      <ItemList productos={productos} />
+      <h1>Productos en la categoría {category}</h1>
+      <form>
+        <label htmlFor="category">Selecciona una categoría:</label>
+        <select id="category" name="category" value={category} onChange={handleCategoryChange}>
+          <option value="">Todas</option>
+          <option value="Arte Tridimensional">Arte Tridimensional</option>
+          <option value="Arte Tradicional">Arte Tradicional</option>
+          <option value="Arte Digital">Arte Digital</option>
+          <option value="Servicios">Servicios</option>
+        </select>
+      </form>
+      {products.length > 0 ? (
+        <ul>
+          {products.map((product) => (
+            <li key={product.id}>{product.name}</li>
+          ))}
+        </ul>
+      ) : (
+        <p>No se encontraron productos en esta categoría.</p>
+      )}
     </div>
   );
 }

@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
+import ItemCount from './ItemCount';
 
 function ItemDetail({ product }) {
   const [count, setCount] = useState(0);
 
-  const handleIncrement = () => {
-    setCount(count + 1);
-  };
-
-  const handleDecrement = () => {
-    if (count > 0) {
-      setCount(count - 1);
-    }
+  const handleAddToCart = (quantity) => {
+    console.log(`Agregado al carrito: ${quantity} ${product.name}`);
   };
 
   return (
@@ -19,13 +14,7 @@ function ItemDetail({ product }) {
       <div className="card-body">
         <h5 className="card-title">{product.name}</h5>
         <p className="card-text">{product.description}</p>
-        <p>Cantidad: {count}</p>
-        <button className="btn btn-primary" onClick={handleIncrement}>
-          Sumar
-        </button>
-        <button className="btn btn-danger" onClick={handleDecrement}>
-          Restar
-        </button>
+        <ItemCount stock={5} initial={1} onAdd={handleAddToCart} />
       </div>
     </div>
   );
