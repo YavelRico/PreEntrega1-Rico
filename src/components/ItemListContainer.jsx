@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getProducts, getProductsByCategory } from './asyncMock';
-import Detalles from './ItemDetail';
+import ItemList from './ItemList';
 
 function ItemListContainer() {
   const { categories } = useParams();
@@ -11,7 +11,7 @@ function ItemListContainer() {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        if (!categories || categories === 'Inicio') { 
+        if (!categories || categories === 'Inicio') {
           const allProducts = await getProducts();
           setProducts(allProducts);
         } else {
@@ -41,11 +41,7 @@ function ItemListContainer() {
   return (
     <div>
       <h1>Productos en la categoría {categories || 'Inicio'}</h1>
-      <ul>
-        {products.map((product) => (
-          <Detalles key={product.id} product={product} />
-        ))}
-      </ul>
+      <ItemList products={products} />
     </div>
   );
 }

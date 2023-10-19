@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import ItemCount from './ItemCount';
 
-function Detalles({ product }) {
+function ItemDetail({ product, onAddToCart }) {
   const [count, setCount] = useState(0);
 
   const handleIncrement = () => {
@@ -14,22 +15,26 @@ function Detalles({ product }) {
     }
   };
 
+  const addToCart = () => {
+    onAddToCart(product, count); // Pasar la cantidad al agregar al carrito
+  };
+
   return (
     <div className="card">
       <img src={product.image} alt={product.name} className="card-img-top" />
       <div className="card-body">
         <h5 className="card-title">{product.name}</h5>
         <p className="card-text">{product.description}</p>
-        <p>Cantidad: {count}</p>
-        <button className="btn btn-primary" onClick={handleIncrement}>
-          Sumar
-        </button>
-        <button className="btn btn-danger" onClick={handleDecrement}>
-          Restar
-        </button>
+        <ItemCount stock={5} initial={1} onAdd={addToCart} />
+        <Link to={`/checkout`} className="btn btn-primary mt-2">
+          Ir al Checkout
+        </Link>
+        <Link to={`/brief`} className="btn btn-primary mt-2">
+          Ver el Brief
+        </Link>
       </div>
     </div>
   );
 }
 
-export default Detalles;
+export default ItemDetail;

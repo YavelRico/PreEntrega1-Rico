@@ -133,7 +133,7 @@ a{
   color: #43f7fc !important;
 }
 
-.productos {
+.card-container {
   display: flex;
   grid-template-columns: 33.3% 33.3% 33.3%;
   gap: 40px;

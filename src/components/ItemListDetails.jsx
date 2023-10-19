@@ -1,34 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import ItemDetail from './ItemDetail';
+import { getProductsById } from './asyncMock';
 
-function Detalles({ product }) {
-  const [count, setCount] = useState(0);
+function ItemDetailContainer() {
+  const { productId } = useParams();
+  const [product, setProduct] = useState(null);
 
-  const handleIncrement = () => {
-    setCount(count + 1);
-  };
-
-  const handleDecrement = () => {
-    if (count > 0) {
-      setCount(count - 1);
-    }
-  };
+  useEffect(() => {
+    getProductsById(productId)
+      .then((productDetails) => setProduct(productDetails));
+  }, [productId]);
 
   return (
-    <li key={product.id}>
-      <img src={product.image} alt={product.name} className="card-img-top" />
-      <div className="card-body">
-        <h5 className="card-title">{product.name}</h5>
-        <p className="card-text">{product.description}</p>
-        <p>Cantidad: {count}</p>
-        <button className="btn btn-primary" onClick={handleIncrement}>
-          Sumar
-        </button>
-        <button className="btn btn-danger" onClick={handleDecrement}>
-          Restar
-        </button>
-      </div>
-    </li>
+    <div>
+      {product ? <ItemDetail product={product} /> : 'Cargando detalles...'}
+    </div>
   );
 }
 
-export default Detalles;
+export default ItemDetailContainer;

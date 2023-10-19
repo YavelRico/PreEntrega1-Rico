@@ -1,33 +1,27 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-function ItemCount({ stock, initial, onAdd }) {
-  const [count, setCount] = useState(initial);
+function ItemCount({ product }) {
+  const [count, setCount] = useState(0);
 
   const handleIncrement = () => {
-    if (count < stock) {
-      setCount(count + 1);
-    }
+    setCount(count + 1);
   };
 
   const handleDecrement = () => {
-    if (count > initial) {
+    if (count > 0) {
       setCount(count - 1);
     }
   };
 
   return (
     <div>
-      <div className="d-flex justify-content-center align-items-center">
-        <button className="btn btn-danger" onClick={handleDecrement}>
-          -
-        </button>
-        <p className="mx-3">{count}</p>
-        <button className="btn btn-success" onClick={handleIncrement}>
-          +
-        </button>
-      </div>
-      <button className="btn btn-primary mt-3" onClick={() => onAdd(count)}>
-        Agregar al Carrito
+      <p>Cantidad: {count}</p>
+      <button className="btn btn-primary" onClick={handleIncrement}>
+        Sumar
+      </button>
+      <button className="btn btn-danger" onClick={handleDecrement}>
+        Restar
       </button>
     </div>
   );

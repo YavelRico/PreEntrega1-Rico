@@ -1,8 +1,6 @@
 import React from 'react';
 
-function CartWidget() {
-  const itemCount = 5;
-
+function CartWidget({ itemCount }) {
   const numberStyle = {
     color: 'cyan',
   };
