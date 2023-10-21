@@ -1,6 +1,9 @@
 import React from 'react';
+import { useCart } from './CartContext';
 
-function CartWidget({ itemCount }) {
+function CartWidget() {
+  const { cart } = useCart();
+
   const numberStyle = {
     color: 'cyan',
   };
@@ -8,7 +11,7 @@ function CartWidget({ itemCount }) {
   return (
     <div className="cart-widget">
       <i className="fa fa-shopping-cart"></i>
-      <span className="badge badge-pill" style={numberStyle}>{itemCount}</span>
+      <span className="badge badge-pill" style={numberStyle}>{cart.length}</span>
     </div>
   );
 }

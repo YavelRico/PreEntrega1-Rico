@@ -1,3 +1,4 @@
+// NavBar.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 import CartWidget from './CartWidget';
@@ -5,6 +6,9 @@ import CartWidget from './CartWidget';
 const categories = ["Tradicional", "Digital", "Modelaje", "Servicios"];
 
 function Navbar() {
+  // Simulación de la cantidad de elementos en el carrito
+  const itemCount = 5; // Esto debe ser sustituido por la lógica real
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
@@ -26,29 +30,24 @@ function Navbar() {
               <Link className="nav-link" to="/">Inicio</Link>
             </li>
             <li className="nav-item dropdown">
-						<a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-							aria-expanded="false">Productos</a>
-						<ul className="dropdown-menu">
-            {categories.map((category) => (
-              <li className="dropdown-item-item" key={category}>
-                <Link className="nav-link" to={`/category/${category}`}>{category}</Link>
-              </li>
-            ))}
-						</ul>
-					</li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/">Contacto</Link>
+              <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">Productos</a>
+              <ul className="dropdown-menu">
+                {categories.map((category) => (
+                  <li className="dropdown-item-item" key={category}>
+                    <Link className="nav-link" to={`/category/${category}`}>{category}</Link>
+                  </li>
+                ))}
+              </ul>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/">Nosotros</Link>
-            </li>
-            <li className="nav-item">
-              <CartWidget />
+              <Link className="nav-link" to="/brief">
+                <CartWidget itemCount={itemCount} />
+              </Link>
             </li>
           </ul>
         </div>
       </div>
-      <Link to="/">Brand</Link>
     </nav>
   );
 }

@@ -1,11 +1,19 @@
 import React from 'react';
+import { useCart } from './CartContext';
 
 function Brief() {
-  // Agrega aquí el código para mostrar el resumen del Brief de compra
+  const { cart } = useCart();
+
   return (
     <div>
-      <h2>Brief de Compra</h2>
-      {/* Agrega aquí la información del Brief de compra */}
+      <h1>Resumen de Compra</h1>
+      <ul>
+        {cart.map((product) => (
+          <li key={product.id}>
+            {product.name} - {product.description}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
